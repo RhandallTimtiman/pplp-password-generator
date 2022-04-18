@@ -5,7 +5,13 @@ function App() {
   const LOWER_CASE_CHARS = "abcdefghijklmnopqrstuvwxyz".split("");
   const UPPER_CASE_CHARS = LOWER_CASE_CHARS.map((x) => x.toUpperCase());
   const SYMBOLS = "!£$%^&*()@~:;,./?{}=-_".split("");
-  const LETTERS_MIX = [...LOWER_CASE_CHARS, ...UPPER_CASE_CHARS, ...SYMBOLS];
+  const NUMBERS = "0123456789".split("");
+  const LETTERS_MIX = [
+    ...LOWER_CASE_CHARS,
+    ...UPPER_CASE_CHARS,
+    ...SYMBOLS,
+    ...NUMBERS,
+  ];
   const CHARS_LENGTH = LETTERS_MIX.length;
 
   function containsLowerCase(str) {
@@ -20,11 +26,16 @@ function App() {
     return SYMBOLS.some((x) => str.includes(x));
   }
 
+  function containsNumber(str) {
+    return NUMBERS.some((x) => str.includes(x));
+  }
+
   function isValidPassword(password) {
     return (
       containsLowerCase(password) &&
       containsUpperCase(password) &&
-      containsSymbol(password)
+      containsSymbol(password) &&
+      containsNumber(password)
     );
   }
 
